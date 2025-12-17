@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<!-- MOBILE SCALE -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<!-- ADMIN SAFETY -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#111827">
+
+<title>Database Admin</title>
+
+<!-- FONT AWESOME (ONLY FOR BUTTON ICON) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: #0f172a;
+  color: #e5e7eb;
+  font-size: 13px;
+}
+
+/* TOOLBAR */
+.table-toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background: #020617;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.table-toolbar input {
+  padding: 6px 8px;
+  background: #020617;
+  border: 1px solid #334155;
+  color: #e5e7eb;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.table-toolbar button {
+  padding: 6px 12px;
+  background: #2563eb;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.table-toolbar span {
+  align-self: center;
+  color: #94a3b8;
+}
+
+/* TABLE WRAP */
+.table-wrap {
+  overflow: auto;
+  height: calc(100vh - 50px);
+}
+
+/* TABLE */
+.db-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.db-table th,
+.db-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.db-table th {
+  background: #020617;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  text-align: left;
+  font-weight: 600;
+}
+
+.db-table tr:hover td {
+  background: #020617;
+}
+
+/* INLINE EDIT */
+td[contenteditable="true"] {
+  outline: 1px dashed #2563eb;
+  background: #020617;
+}
+</style>
+</head>
+
+<body>
+
+<div class="table-toolbar">
+  <input type="search" placeholder="Search table…">
+
+  <button>
+    <i class="fa-solid fa-plus"></i>
+    Insert
+  </button>
+
+  <span>Rows: 8</span>
+</div>
+
+<div class="table-wrap">
+<table class="db-table">
+<thead>
+<tr>
+  <th style="width:60px">ID</th>
+  <th>Username</th>
+  <th>Email</th>
+  <th>Role</th>
+  <th>Status</th>
+  <th>Created At</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+  <td>1</td>
+  <td ondblclick="edit(this)">admin</td>
+  <td ondblclick="edit(this)">admin@site.com</td>
+  <td ondblclick="edit(this)">Owner</td>
+  <td ondblclick="edit(this)">Active</td>
+  <td>2024-10-01</td>
+</tr>
+
+<tr>
+  <td>2</td>
+  <td ondblclick="edit(this)">lodwick</td>
+  <td ondblclick="edit(this)">lodwick@mail.com</td>
+  <td ondblclick="edit(this)">Developer</td>
+  <td ondblclick="edit(this)">Active</td>
+  <td>2024-10-12</td>
+</tr>
+
+<tr>
+  <td>3</td>
+  <td ondblclick="edit(this)">user_01</td>
+  <td ondblclick="edit(this)">user01@mail.com</td>
+  <td ondblclick="edit(this)">Member</td>
+  <td ondblclick="edit(this)">Inactive</td>
+  <td>2024-11-02</td>
+</tr>
+
+<tr>
+  <td>4</td>
+  <td ondblclick="edit(this)">user_02</td>
+  <td ondblclick="edit(this)">user02@mail.com</td>
+  <td ondblclick="edit(this)">Member</td>
+  <td ondblclick="edit(this)">Active</td>
+  <td>2024-11-08</td>
+</tr>
+
+<tr>
+  <td>5</td>
+  <td ondblclick="edit(this)">editor1</td>
+  <td ondblclick="edit(this)">editor@mail.com</td>
+  <td ondblclick="edit(this)">Editor</td>
+  <td ondblclick="edit(this)">Active</td>
+  <td>2024-11-15</td>
+</tr>
+
+<tr>
+  <td>6</td>
+  <td ondblclick="edit(this)">guest01</td>
+  <td ondblclick="edit(this)">guest@mail.com</td>
+  <td ondblclick="edit(this)">Guest</td>
+  <td ondblclick="edit(this)">Inactive</td>
+  <td>2024-11-20</td>
+</tr>
+
+<tr>
+  <td>7</td>
+  <td ondblclick="edit(this)">support</td>
+  <td ondblclick="edit(this)">support@site.com</td>
+  <td ondblclick="edit(this)">Support</td>
+  <td ondblclick="edit(this)">Active</td>
+  <td>2024-12-01</td>
+</tr>
+
+<tr>
+  <td>8</td>
+  <td ondblclick="edit(this)">tester</td>
+  <td ondblclick="edit(this)">tester@mail.com</td>
+  <td ondblclick="edit(this)">QA</td>
+  <td ondblclick="edit(this)">Active</td>
+  <td>2024-12-05</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<script>
+function edit(cell) {
+  cell.setAttribute("contenteditable", "true");
+  cell.focus();
+
+  cell.onblur = () => {
+    cell.removeAttribute("contenteditable");
+    console.log("Updated:", cell.innerText);
+    // later: AJAX save
+  };
+}
+</script>
+
+</body>
+</html>
